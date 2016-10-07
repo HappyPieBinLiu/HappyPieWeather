@@ -34,7 +34,7 @@ public class HappyPieWeatherOpenHelper extends SQLiteOpenHelper {
     public static final String CREATE_COUNTY_TABLE = "create table County ("
             + "id integer primary key autoincrement,"
             + "county_name text,"
-            + "county_code text"
+            + "county_code text,"
             + "city_id integer)";
 
     public HappyPieWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

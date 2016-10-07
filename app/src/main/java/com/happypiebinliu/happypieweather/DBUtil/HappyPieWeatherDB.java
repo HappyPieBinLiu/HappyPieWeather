@@ -30,7 +30,7 @@ public class HappyPieWeatherDB {
 
     private static HappyPieWeatherDB happyPieWeatherDB;
 
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
 
     public HappyPieWeatherDB(Context context) {
         HappyPieWeatherOpenHelper dbHelper = new HappyPieWeatherOpenHelper(context, DB_NAME, null, VERSION);
@@ -80,7 +80,7 @@ public class HappyPieWeatherDB {
             db.insert("City", null, values);
         }
     }
-    public List<City> loadCities(int provinceId) {
+    public static List<City> loadCities(int provinceId) {
         List<City> list = new ArrayList<City>();
         Cursor cursor = db.query("City", null, "province_id = ?",
                 new String[]{String.valueOf(provinceId)}, null, null, null);
@@ -88,10 +88,8 @@ public class HappyPieWeatherDB {
             do {
                 City city = new City();
                 city.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                city.setCityName(cursor.getString(cursor
-                        .getColumnIndex("city_name")));
-                city.setCityCode(cursor.getString(cursor
-                        .getColumnIndex("city_code")));
+                city.setCityName(cursor.getString(cursor.getColumnIndex("city_name")));
+                city.setCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
                 city.setProvinceId(provinceId);
                 list.add(city);
             } while (cursor.moveToNext());
