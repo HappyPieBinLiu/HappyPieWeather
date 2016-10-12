@@ -17,6 +17,7 @@ import com.happypiebinliu.happypieweather.Common.HttpCallbackListener;
 import com.happypiebinliu.happypieweather.Common.HttpUtil;
 import com.happypiebinliu.happypieweather.Common.Utility;
 import com.happypiebinliu.happypieweather.R;
+import com.happypiebinliu.happypieweather.Service.AutoUpdateService;
 
 public class WeatherActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -130,6 +131,8 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
 
